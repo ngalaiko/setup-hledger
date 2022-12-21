@@ -15,6 +15,6 @@ runs:
     - id: install
       shell: bash
       run: |
-        ./install.sh --version "${{ inputs.version }}" --dist "$HOME/.local/bin"
+        ./src/install.sh --version "${{ inputs.version }}" --dist "$HOME/.local/bin"
         echo "version=$($HOME/.local/bin/hledger --version)" >> $GITHUB_OUTPUT
         echo "$HOME/.local/bin" >> $GITHUB_PATH
