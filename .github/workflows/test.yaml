@@ -1,5 +1,9 @@
 name: Test
-on: [push]
+on:
+  push:
+    paths:
+      - '**.sh'
+      - '**.yaml'
 jobs:
   test:
     runs-on: ${{ matrix.os }}
