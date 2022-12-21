@@ -13,14 +13,14 @@ See [action.yaml](action.yaml)
 ```yaml
 steps:
 - uses: actions/checkout@v3
-- uses: actions/setup-hledger@v1
+- uses: ngalaiko/setup-hledger@v1
 ```
 
 **Specific version:**
 ```yaml
 steps:
 - uses: actions/checkout@v3
-- uses: actions/setup-hledger@v1
+- uses: ngalaiko/setup-hledger@v1
   with:
     version: 1.28
 ```
