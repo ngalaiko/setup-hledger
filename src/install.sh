@@ -6,7 +6,7 @@ set -o pipefail
 
 PWD="$(dirname $(readlink -f -- $0))"
 DIST="$PWD/dist"
-VERSION="1.28"
+VERSION="1.29.2"
 OS="$(uname -s)"
 
 function help() {
@@ -68,22 +68,25 @@ function download() {
 	fi
 }
 
+function cleanup() {
+	popd
+	rm -rf "$TMP_DIR"
+}
+
+TMP_DIR=$(mktemp -d -t ci-XXXXXXXXXX)
+pushd "$TMP_DIR"
+trap cleanup EXIT
+
 case "$OS" in
 Linux)
 	case "$VERSION" in
-	1.27 | 1.27.1 | 1.28)
-		TMP_DIR=$(mktemp -d -t ci-XXXXXXXXXX)
-		pushd "$TMP_DIR"
+	1.27 | 1.27.1 | 1.28 | 1.29 | 1.29.1 | 1.29.2)
 		download "https://github.com/simonmichael/hledger/releases/download/$VERSION/hledger-linux-x64.zip"
 		unzip -o "hledger-linux-x64.zip"
 		mkdir -p "$DIST"
 		tar xvf "hledger-linux-x64.tar" --directory "$DIST"
-		popd
-		rm -rf $TMP_DIR
 		;;
 	1.24.1 | 1.24.99.1 | 1.24.99.2 | 1.25 | 1.26 | 1.26.1)
-		TMP_DIR=$(mktemp -d -t ci-XXXXXXXXXX)
-		pushd "$TMP_DIR"
 		download "https://github.com/simonmichael/hledger/releases/download/$VERSION/hledger-linux-x64.zip"
 		mkdir -p "$DIST"
 		unzip -o "hledger-linux-x64.zip" -d "$DIST"
@@ -91,12 +94,8 @@ Linux)
 		mv "$DIST/hledger-web-linux-x64" "$DIST/hledger-web"
 		mv "$DIST/hledger-ui-linux-x64" "$DIST/hledger-ui"
 		chmod +x "$DIST/hledger" "$DIST/hledger-web" "$DIST/hledger-ui"
-		popd
-		rm -rf $TMP_DIR
 		;;
 	1.22.2 | 1.23 | 1.24)
-		TMP_DIR=$(mktemp -d -t ci-XXXXXXXXXX)
-		pushd "$TMP_DIR"
 		download "https://github.com/simonmichael/hledger/releases/download/$VERSION/hledger-linux-static-x64.zip"
 		mkdir -p "$DIST"
 		unzip -o "hledger-linux-static-x64.zip" -d "$DIST"
@@ -104,12 +103,8 @@ Linux)
 		mv "$DIST/hledger-web-linux-static-x64" "$DIST/hledger-web"
 		mv "$DIST/hledger-ui-linux-static-x64" "$DIST/hledger-ui"
 		chmod +x "$DIST/hledger" "$DIST/hledger-web" "$DIST/hledger-ui"
-		popd
-		rm -rf $TMP_DIR
 		;;
 	1.22 | 1.22.1)
-		TMP_DIR=$(mktemp -d -t ci-XXXXXXXXXX)
-		pushd "$TMP_DIR"
 		download "https://github.com/simonmichael/hledger/releases/download/$VERSION/hledger-linux-static-x64.zip"
 		mkdir -p "$DIST"
 		unzip -o "hledger-linux-static-x64.zip" -d "$DIST"
@@ -117,51 +112,33 @@ Linux)
 		mv "$DIST/hledger-web-static-linux-x64" "$DIST/hledger-web"
 		mv "$DIST/hledger-ui-static-linux-x64" "$DIST/hledger-ui"
 		chmod +x "$DIST/hledger" "$DIST/hledger-web" "$DIST/hledger-ui"
-		popd
-		rm -rf $TMP_DIR
 		;;
 	1.21)
-		TMP_DIR=$(mktemp -d -t ci-XXXXXXXXXX)
-		pushd "$TMP_DIR"
 		download "https://github.com/simonmichael/hledger/releases/download/$VERSION/hledger-ubuntu.zip"
 		mkdir -p "$DIST"
 		unzip -o "hledger-ubuntu.zip" -d "$DIST"
 		chmod +x "$DIST/hledger" "$DIST/hledger-web" "$DIST/hledger-ui"
-		popd
-		rm -rf $TMP_DIR
 		;;
 	1.20.1)
 		sudo apt install libncurses5
-		TMP_DIR=$(mktemp -d -t ci-XXXXXXXXXX)
-		pushd "$TMP_DIR"
 		download "https://github.com/simonmichael/hledger/releases/download/hledger-$VERSION/hledger-ubuntu.zip"
 		mkdir -p "$DIST"
 		unzip -o "hledger-ubuntu.zip" -d "$DIST"
 		chmod +x "$DIST/hledger" "$DIST/hledger-web" "$DIST/hledger-ui"
-		popd
-		rm -rf $TMP_DIR
 		;;
 	1.18.1 | 1.19 | 1.19.1 | 1.20 | 1.20.2 | 1.20.3 | 1.20.4)
 		sudo apt install libncurses5
-		TMP_DIR=$(mktemp -d -t ci-XXXXXXXXXX)
-		pushd "$TMP_DIR"
 		download "https://github.com/simonmichael/hledger/releases/download/$VERSION/hledger-ubuntu.zip"
 		mkdir -p "$DIST"
 		unzip -o "hledger-ubuntu.zip" -d "$DIST"
 		chmod +x "$DIST/hledger" "$DIST/hledger-web" "$DIST/hledger-ui"
-		popd
-		rm -rf $TMP_DIR
 		;;
 	1.18)
 		sudo apt install libncurses5
-		TMP_DIR=$(mktemp -d -t ci-XXXXXXXXXX)
-		pushd "$TMP_DIR"
 		download "https://github.com/simonmichael/hledger/releases/download/$VERSION/hledger-ubuntu-unoptimised.zip"
 		mkdir -p "$DIST"
 		unzip -o "hledger-ubuntu-unoptimised.zip" -d "$DIST"
 		chmod +x "$DIST/hledger" "$DIST/hledger-web" "$DIST/hledger-ui"
-		popd
-		rm -rf $TMP_DIR
 		;;
 	*)
 		error "$VERSION unsupported"
@@ -170,55 +147,35 @@ Linux)
 	;;
 Darwin)
 	case "$VERSION" in
-	1.27 | 1.27.1 | 1.28)
-		TMP_DIR=$(mktemp -d -t ci-XXXXXXXXXX)
-		pushd "$TMP_DIR"
+	1.27 | 1.27.1 | 1.28 | 1.29 | 1.29.1 | 1.29.2)
 		download "https://github.com/simonmichael/hledger/releases/download/$VERSION/hledger-mac-x64.zip"
 		unzip -o "hledger-mac-x64.zip"
 		mkdir -p "$DIST"
 		tar xvf "hledger-mac-x64.tar" --directory "$DIST"
-		popd
-		rm -rf $TMP_DIR
 		;;
 	1.26 | 1.26.1)
-		TMP_DIR=$(mktemp -d -t ci-XXXXXXXXXX)
-		pushd "$TMP_DIR"
 		download "https://github.com/simonmichael/hledger/releases/download/$VERSION/hledger-mac-x64.zip"
 		mkdir -p "$DIST"
 		unzip -o "hledger-mac-x64.zip" -d "$DIST"
 		chmod +x "$DIST/hledger" "$DIST/hledger-web" "$DIST/hledger-ui"
-		popd
-		rm -rf $TMP_DIR
 		;;
 	1.20.1)
-		TMP_DIR=$(mktemp -d -t ci-XXXXXXXXXX)
-		pushd "$TMP_DIR"
 		download "https://github.com/simonmichael/hledger/releases/download/hledger-$VERSION/hledger-macos.zip"
 		mkdir -p "$DIST"
 		unzip -o "hledger-macos.zip" -d "$DIST"
 		chmod +x "$DIST/hledger" "$DIST/hledger-web" "$DIST/hledger-ui"
-		popd
-		rm -rf $TMP_DIR
 		;;
 	1.18.1 | 1.19 | 1.19.1 | 1.20 | 1.20.2 | 1.20.3 | 1.20.4 | 1.21 | 1.22 | 1.22.1 | 1.22.2 | 1.23 | 1.24 | 1.24.1 | 1.24.99.1 | 1.24.99.2 | 1.25)
-		TMP_DIR=$(mktemp -d -t ci-XXXXXXXXXX)
-		pushd "$TMP_DIR"
 		download "https://github.com/simonmichael/hledger/releases/download/$VERSION/hledger-macos.zip"
 		mkdir -p "$DIST"
 		unzip -o "hledger-macos.zip" -d "$DIST"
 		chmod +x "$DIST/hledger" "$DIST/hledger-web" "$DIST/hledger-ui"
-		popd
-		rm -rf $TMP_DIR
 		;;
 	1.18)
-		TMP_DIR=$(mktemp -d -t ci-XXXXXXXXXX)
-		pushd "$TMP_DIR"
 		download "https://github.com/simonmichael/hledger/releases/download/$VERSION/hledger-macos-unoptimised.zip"
 		mkdir -p "$DIST"
 		unzip -o "hledger-macos-unoptimised.zip" -d "$DIST"
 		chmod +x "$DIST/hledger" "$DIST/hledger-web" "$DIST/hledger-ui"
-		popd
-		rm -rf $TMP_DIR
 		;;
 	*)
 		error "$VERSION unsupported"
