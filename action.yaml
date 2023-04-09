@@ -1,5 +1,8 @@
 name: 'Setup hledger'
 description: 'Download and install hledger binary'
+branding:
+  icon: 'dollar-sign'
+  color: 'yellow'
 inputs:
   version:
     description: 'Version to install.'
