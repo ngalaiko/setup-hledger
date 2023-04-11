@@ -1,13 +1,12 @@
-name: 'Setup hledger'
-description: 'Download and install hledger binary'
+name: "Setup hledger"
+description: "Download and install hledger binary"
 branding:
-  icon: 'dollar-sign'
-  color: 'yellow'
+  icon: "dollar-sign"
+  color: "yellow"
 inputs:
   version:
-    description: 'Version to install.'
-    required: true
-    default: '1.27'
+    description: "Version to install."
+    required: false
 outputs:
   version:
     description: "Installed version."
@@ -15,9 +14,18 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - id: install
+    - id: install-version
       shell: bash
+      if: ${{ inputs.version != null }}
       run: |
         ${{ github.action_path }}/src/install.sh --version "${{ inputs.version }}" --dist "$HOME/.local/bin"
+        echo "version=$($HOME/.local/bin/hledger --version)" >> $GITHUB_OUTPUT
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+    - id: install-default-version
+      shell: bash
+      if: ${{ inputs.version == null }}
+      run: |
+        ${{ github.action_path }}/src/install.sh --dist "$HOME/.local/bin"
         echo "version=$($HOME/.local/bin/hledger --version)" >> $GITHUB_OUTPUT
         echo "$HOME/.local/bin" >> $GITHUB_PATH

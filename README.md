@@ -14,6 +14,8 @@ See [action.yaml](action.yaml)
 steps:
 - uses: actions/checkout@v3
 - uses: ngalaiko/setup-hledger@v1
+- run: |
+    hledger --version
 ```
 
 **Specific version:**
@@ -23,6 +25,8 @@ steps:
 - uses: ngalaiko/setup-hledger@v1
   with:
     version: 1.28
+- run: |
+    hledger --version
 ```
 
 The `version` input is optional. If not supplied, the latest available release will be used.

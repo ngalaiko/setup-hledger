@@ -5,7 +5,7 @@ on:
       - '**.sh'
       - '**.yaml'
 jobs:
-  test:
+  test-version:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -47,5 +47,20 @@ jobs:
         name: setup-hledger
         with:
            version: ${{ matrix.version }}
+      - run: |
+          hledger --version
+
+  test-latest:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: 
+        - "macos-latest"
+        - "ubuntu-latest"
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./
+        name: setup-hledger
       - run: |
           hledger --version
