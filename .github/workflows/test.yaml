@@ -11,62 +11,206 @@ jobs:
       fail-fast: false
       matrix:
         case:
-          - {os: "macos-latest",  in: "1.18",      out: "hledger 1.18"}
-          - {os: "ubuntu-latest", in: "1.18",      out: "hledger 1.18"}
-          - {os: "macos-latest",  in: "1.18.1",    out: "hledger 1.18.1"}
-          - {os: "ubuntu-latest", in: "1.18.1",    out: "hledger 1.18.99"}
-          - {os: "macos-latest",  in: "1.19",      out: "hledger 1.19"}
-          - {os: "ubuntu-latest", in: "1.19",      out: "hledger 1.19"}
-          - {os: "macos-latest",  in: "1.19.1",    out: "hledger 1.19.1"}
-          - {os: "ubuntu-latest", in: "1.19.1",    out: "hledger 1.19.1"}
-          - {os: "macos-latest",  in: "1.20",      out: "hledger 1.20"}
-          - {os: "ubuntu-latest", in: "1.20",      out: "hledger 1.20"}
-          - {os: "macos-latest",  in: "1.20.1",    out: "hledger 1.20"}
-          - {os: "ubuntu-latest", in: "1.20.1",    out: "hledger 1.20"}
-          - {os: "macos-latest",  in: "1.20.2",    out: "hledger 1.20.2"}
-          - {os: "ubuntu-latest", in: "1.20.2",    out: "hledger 1.20.2"}
-          - {os: "macos-latest",  in: "1.20.3",    out: "hledger 1.20.3"}
-          - {os: "ubuntu-latest", in: "1.20.3",    out: "hledger 1.20.3"}
-          - {os: "macos-latest",  in: "1.20.4",    out: "hledger 1.20.4"}
-          - {os: "ubuntu-latest", in: "1.20.4",    out: "hledger 1.20.4"}
-          - {os: "macos-latest",  in: "1.21",      out: "hledger 1.21"}
-          - {os: "ubuntu-latest", in: "1.21",      out: "hledger 1.21"}
-          - {os: "macos-latest",  in: "1.22",      out: "hledger 1.22-0-g8d237869d, mac-x86_64"}
-          - {os: "ubuntu-latest", in: "1.22",      out: "hledger 8d23786, linux-x86_64"}
-          - {os: "macos-latest",  in: "1.22.1",    out: "hledger 1.22-40-g5895a46ec, mac-x86_64"}
-          - {os: "ubuntu-latest", in: "1.22.1",    out: "hledger 5895a46, linux-x86_64"}
-          - {os: "macos-latest",  in: "1.22.2",    out: "hledger 1.22.1-16-g488cf7082, mac-x86_64"}
-          - {os: "ubuntu-latest", in: "1.22.2",    out: "hledger 488cf70, linux-x86_64"}
-          - {os: "macos-latest",  in: "1.23",      out: "hledger 1.22.99-378-g47b5b6be0, mac-x86_64"}
-          - {os: "ubuntu-latest", in: "1.23",      out: "hledger 47b5b6b, linux-x86_64"}
-          - {os: "macos-latest",  in: "1.24",      out: "hledger 1.24-0-gf0f830e06, mac-x86_64"}
-          - {os: "ubuntu-latest", in: "1.24",      out: "hledger f0f830e, linux-x86_64"}
-          - {os: "macos-latest",  in: "1.24.1",    out: "hledger 1.24.1-g7799d526b-20211210, mac-x86_64"}
-          - {os: "ubuntu-latest", in: "1.24.1",    out: "hledger 1.24.1-g7799d526b-20211210, linux-x86_64"}
-          - {os: "macos-latest",  in: "1.24.99.1", out: "hledger 1.24.99.1-g2ecab4a2f-20220106, mac-x86_64"}
-          - {os: "ubuntu-latest", in: "1.24.99.1", out: "hledger 1.24.99.1-g2ecab4a2f-20220106, linux-x86_64"}
-          - {os: "macos-latest",  in: "1.24.99.2", out: "hledger 1.24.99.2-gba5b0e93f-20220205, mac-x86_64"}
-          - {os: "ubuntu-latest", in: "1.24.99.2", out: "hledger 1.24.99.2-gba5b0e93f-20220205, linux-x86_64"}
-          - {os: "macos-latest",  in: "1.25",      out: "hledger 1.25-gd60ebcbd6-20220304, mac-x86_64"}
-          - {os: "ubuntu-latest", in: "1.25",      out: "hledger 1.25-gd60ebcbd6-20220304, linux-x86_64"}
-          - {os: "macos-latest",  in: "1.26",      out: "hledger 1.26-ged1d08dc2-20220604, mac-x86_64"}
-          - {os: "ubuntu-latest", in: "1.26",      out: "hledger 1.26, linux-x86_64"}
-          - {os: "macos-latest",  in: "1.26.1",    out: "hledger 1.26.1-gb0822c9b9-20220731, mac-x86_64"}
-          - {os: "ubuntu-latest", in: "1.26.1",    out: "hledger 1.26.1, linux-x86_64"}
-          - {os: "macos-latest",  in: "1.27",      out: "hledger 1.27-ga0be6c2c8-20220901, mac-x86_64"}
-          - {os: "ubuntu-latest", in: "1.27",      out: "hledger 1.27, linux-x86_64"}
-          - {os: "macos-latest",  in: "1.27.1",    out: "hledger 1.27.1-gaa327b7a4-20220918, mac-x86_64"}
-          - {os: "ubuntu-latest", in: "1.27.1",    out: "hledger 1.27.1, linux-x86_64"}
-          - {os: "macos-latest",  in: "1.28",      out: "hledger 1.28-g6e130a4b6-20221201, mac-x86_64"}
-          - {os: "ubuntu-latest", in: "1.28",      out: "hledger 1.28, linux-x86_64"}
-          - {os: "macos-latest",  in: "1.29",      out: "hledger 1.29-g7c77c42bb-20230311, mac-x86_64"}
-          - {os: "ubuntu-latest", in: "1.29",      out: "hledger 1.29, linux-x86_64"}
-          - {os: "macos-latest",  in: "1.29.1",    out: "hledger 1.29.1-gc77cd8786-20230316, mac-x86_64"}
-          - {os: "ubuntu-latest", in: "1.29.1",    out: "hledger 1.29.1, linux-x86_64"}
-          - {os: "macos-latest",  in: "1.29.2",    out: "hledger 1.29.2-g160e48ef7-20230407, mac-x86_64"}
-          - {os: "ubuntu-latest", in: "1.29.2",    out: "hledger 1.29.2, linux-x86_64"}
-          - {os: "macos-latest",  in: "1.30",      out: "hledger 1.30-g94fe8b21c-20230601, mac-x86_64"}
-          - {os: "ubuntu-latest", in: "1.30",      out: "hledger 1.30, linux-x86_64"}
+          - { os: "macos-latest", in: "1.18", out: "hledger 1.18" }
+          - { os: "ubuntu-latest", in: "1.18", out: "hledger 1.18" }
+          - { os: "macos-latest", in: "1.18.1", out: "hledger 1.18.1" }
+          - { os: "ubuntu-latest", in: "1.18.1", out: "hledger 1.18.99" }
+          - { os: "macos-latest", in: "1.19", out: "hledger 1.19" }
+          - { os: "ubuntu-latest", in: "1.19", out: "hledger 1.19" }
+          - { os: "macos-latest", in: "1.19.1", out: "hledger 1.19.1" }
+          - { os: "ubuntu-latest", in: "1.19.1", out: "hledger 1.19.1" }
+          - { os: "macos-latest", in: "1.20", out: "hledger 1.20" }
+          - { os: "ubuntu-latest", in: "1.20", out: "hledger 1.20" }
+          - { os: "macos-latest", in: "1.20.1", out: "hledger 1.20" }
+          - { os: "ubuntu-latest", in: "1.20.1", out: "hledger 1.20" }
+          - { os: "macos-latest", in: "1.20.2", out: "hledger 1.20.2" }
+          - { os: "ubuntu-latest", in: "1.20.2", out: "hledger 1.20.2" }
+          - { os: "macos-latest", in: "1.20.3", out: "hledger 1.20.3" }
+          - { os: "ubuntu-latest", in: "1.20.3", out: "hledger 1.20.3" }
+          - { os: "macos-latest", in: "1.20.4", out: "hledger 1.20.4" }
+          - { os: "ubuntu-latest", in: "1.20.4", out: "hledger 1.20.4" }
+          - { os: "macos-latest", in: "1.21", out: "hledger 1.21" }
+          - { os: "ubuntu-latest", in: "1.21", out: "hledger 1.21" }
+          - {
+              os: "macos-latest",
+              in: "1.22",
+              out: "hledger 1.22-0-g8d237869d, mac-x86_64",
+            }
+          - {
+              os: "ubuntu-latest",
+              in: "1.22",
+              out: "hledger 8d23786, linux-x86_64",
+            }
+          - {
+              os: "macos-latest",
+              in: "1.22.1",
+              out: "hledger 1.22-40-g5895a46ec, mac-x86_64",
+            }
+          - {
+              os: "ubuntu-latest",
+              in: "1.22.1",
+              out: "hledger 5895a46, linux-x86_64",
+            }
+          - {
+              os: "macos-latest",
+              in: "1.22.2",
+              out: "hledger 1.22.1-16-g488cf7082, mac-x86_64",
+            }
+          - {
+              os: "ubuntu-latest",
+              in: "1.22.2",
+              out: "hledger 488cf70, linux-x86_64",
+            }
+          - {
+              os: "macos-latest",
+              in: "1.23",
+              out: "hledger 1.22.99-378-g47b5b6be0, mac-x86_64",
+            }
+          - {
+              os: "ubuntu-latest",
+              in: "1.23",
+              out: "hledger 47b5b6b, linux-x86_64",
+            }
+          - {
+              os: "macos-latest",
+              in: "1.24",
+              out: "hledger 1.24-0-gf0f830e06, mac-x86_64",
+            }
+          - {
+              os: "ubuntu-latest",
+              in: "1.24",
+              out: "hledger f0f830e, linux-x86_64",
+            }
+          - {
+              os: "macos-latest",
+              in: "1.24.1",
+              out: "hledger 1.24.1-g7799d526b-20211210, mac-x86_64",
+            }
+          - {
+              os: "ubuntu-latest",
+              in: "1.24.1",
+              out: "hledger 1.24.1-g7799d526b-20211210, linux-x86_64",
+            }
+          - {
+              os: "macos-latest",
+              in: "1.24.99.1",
+              out: "hledger 1.24.99.1-g2ecab4a2f-20220106, mac-x86_64",
+            }
+          - {
+              os: "ubuntu-latest",
+              in: "1.24.99.1",
+              out: "hledger 1.24.99.1-g2ecab4a2f-20220106, linux-x86_64",
+            }
+          - {
+              os: "macos-latest",
+              in: "1.24.99.2",
+              out: "hledger 1.24.99.2-gba5b0e93f-20220205, mac-x86_64",
+            }
+          - {
+              os: "ubuntu-latest",
+              in: "1.24.99.2",
+              out: "hledger 1.24.99.2-gba5b0e93f-20220205, linux-x86_64",
+            }
+          - {
+              os: "macos-latest",
+              in: "1.25",
+              out: "hledger 1.25-gd60ebcbd6-20220304, mac-x86_64",
+            }
+          - {
+              os: "ubuntu-latest",
+              in: "1.25",
+              out: "hledger 1.25-gd60ebcbd6-20220304, linux-x86_64",
+            }
+          - {
+              os: "macos-latest",
+              in: "1.26",
+              out: "hledger 1.26-ged1d08dc2-20220604, mac-x86_64",
+            }
+          - {
+              os: "ubuntu-latest",
+              in: "1.26",
+              out: "hledger 1.26, linux-x86_64",
+            }
+          - {
+              os: "macos-latest",
+              in: "1.26.1",
+              out: "hledger 1.26.1-gb0822c9b9-20220731, mac-x86_64",
+            }
+          - {
+              os: "ubuntu-latest",
+              in: "1.26.1",
+              out: "hledger 1.26.1, linux-x86_64",
+            }
+          - {
+              os: "macos-latest",
+              in: "1.27",
+              out: "hledger 1.27-ga0be6c2c8-20220901, mac-x86_64",
+            }
+          - {
+              os: "ubuntu-latest",
+              in: "1.27",
+              out: "hledger 1.27, linux-x86_64",
+            }
+          - {
+              os: "macos-latest",
+              in: "1.27.1",
+              out: "hledger 1.27.1-gaa327b7a4-20220918, mac-x86_64",
+            }
+          - {
+              os: "ubuntu-latest",
+              in: "1.27.1",
+              out: "hledger 1.27.1, linux-x86_64",
+            }
+          - {
+              os: "macos-latest",
+              in: "1.28",
+              out: "hledger 1.28-g6e130a4b6-20221201, mac-x86_64",
+            }
+          - {
+              os: "ubuntu-latest",
+              in: "1.28",
+              out: "hledger 1.28, linux-x86_64",
+            }
+          - {
+              os: "macos-latest",
+              in: "1.29",
+              out: "hledger 1.29-g7c77c42bb-20230311, mac-x86_64",
+            }
+          - {
+              os: "ubuntu-latest",
+              in: "1.29",
+              out: "hledger 1.29, linux-x86_64",
+            }
+          - {
+              os: "macos-latest",
+              in: "1.29.1",
+              out: "hledger 1.29.1-gc77cd8786-20230316, mac-x86_64",
+            }
+          - {
+              os: "ubuntu-latest",
+              in: "1.29.1",
+              out: "hledger 1.29.1, linux-x86_64",
+            }
+          - {
+              os: "macos-latest",
+              in: "1.29.2",
+              out: "hledger 1.29.2-g160e48ef7-20230407, mac-x86_64",
+            }
+          - {
+              os: "ubuntu-latest",
+              in: "1.29.2",
+              out: "hledger 1.29.2, linux-x86_64",
+            }
+          - {
+              os: "macos-latest",
+              in: "1.30",
+              out: "hledger 1.30-g94fe8b21c-20230601, mac-x86_64",
+            }
+          - {
+              os: "ubuntu-latest",
+              in: "1.30",
+              out: "hledger 1.30, linux-x86_64",
+            }
     steps:
       - uses: actions/checkout@v3
       - uses: ./
@@ -82,8 +226,11 @@ jobs:
       fail-fast: false
       matrix:
         case:
-          - {os: "ubuntu-latest", out: "hledger 1.30, linux-x86_64"}
-          - {os: "macos-latest",  out: "hledger 1.30-g94fe8b21c-20230601, mac-x86_64"}
+          - { os: "ubuntu-latest", out: "hledger 1.31, linux-x86_64" }
+          - {
+              os: "macos-latest",
+              out: "hledger hledger 1.31-g7fbe76970-20230903, mac-x86_64",
+            }
     steps:
       - uses: actions/checkout@v3
       - uses: ./
