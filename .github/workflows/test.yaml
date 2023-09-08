@@ -211,6 +211,16 @@ jobs:
               in: "1.30",
               out: "hledger 1.30, linux-x86_64",
             }
+          - {
+              os: "ubuntu-latest",
+              in: "1.31",
+              out: "hledger 1.31, linux-x86_64",
+            }
+          - {
+              os: "macos-latest",
+              in: "1.31",
+              out: "hledger 1.31-g7fbe76970-20230903, mac-x86_64",
+            }
     steps:
       - uses: actions/checkout@v3
       - uses: ./
@@ -229,7 +239,7 @@ jobs:
           - { os: "ubuntu-latest", out: "hledger 1.31, linux-x86_64" }
           - {
               os: "macos-latest",
-              out: "hledger hledger 1.31-g7fbe76970-20230903, mac-x86_64",
+              out: "hledger 1.31-g7fbe76970-20230903, mac-x86_64",
             }
     steps:
       - uses: actions/checkout@v3
