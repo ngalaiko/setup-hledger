@@ -6,7 +6,7 @@ set -o pipefail
 
 PWD="$(dirname $(readlink -f -- $0))"
 DIST="$PWD/dist"
-VERSION="1.31"
+VERSION="1.32"
 OS="$(uname -s)"
 
 function help() {
@@ -80,7 +80,7 @@ trap cleanup EXIT
 case "$OS" in
 Linux)
 	case "$VERSION" in
-	1.27 | 1.27.1 | 1.28 | 1.29 | 1.29.1 | 1.29.2 | 1.30 | 1.31)
+	1.27 | 1.27.1 | 1.28 | 1.29 | 1.29.1 | 1.29.2 | 1.30 | 1.31 | 1.32)
 		download "https://github.com/simonmichael/hledger/releases/download/$VERSION/hledger-linux-x64.zip"
 		unzip -o "hledger-linux-x64.zip"
 		mkdir -p "$DIST"
@@ -147,7 +147,7 @@ Linux)
 	;;
 Darwin)
 	case "$VERSION" in
-	1.27 | 1.27.1 | 1.28 | 1.29 | 1.29.1 | 1.29.2 | 1.30 | 1.31)
+	1.27 | 1.27.1 | 1.28 | 1.29 | 1.29.1 | 1.29.2 | 1.30 | 1.31 | 1.32)
 		download "https://github.com/simonmichael/hledger/releases/download/$VERSION/hledger-mac-x64.zip"
 		unzip -o "hledger-mac-x64.zip"
 		mkdir -p "$DIST"
