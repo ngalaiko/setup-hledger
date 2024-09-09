@@ -80,7 +80,12 @@ trap cleanup EXIT
 case "$OS" in
 Linux)
 	case "$VERSION" in
-	1.27 | 1.27.1 | 1.28 | 1.29 | 1.29.1 | 1.29.2 | 1.30 | 1.31 | 1.32)
+	1.34 | 1.40)
+		download "https://github.com/simonmichael/hledger/releases/download/$VERSION/hledger-linux-x64.tar.gz"
+		mkdir -p "$DIST"
+		tar xvf "hledger-linux-x64.tar.gz" --directory "$DIST"
+		;;
+	1.27 | 1.27.1 | 1.28 | 1.29 | 1.29.1 | 1.29.2 | 1.30 | 1.31 | 1.32 | 1.32.1 | 1.32.2 | 1.32.3 | 1.33 | 1.33.1)
 		download "https://github.com/simonmichael/hledger/releases/download/$VERSION/hledger-linux-x64.zip"
 		unzip -o "hledger-linux-x64.zip"
 		mkdir -p "$DIST"
@@ -147,7 +152,12 @@ Linux)
 	;;
 Darwin)
 	case "$VERSION" in
-	1.27 | 1.27.1 | 1.28 | 1.29 | 1.29.1 | 1.29.2 | 1.30 | 1.31 | 1.32)
+	1.34 | 1.40)
+		download "https://github.com/simonmichael/hledger/releases/download/$VERSION/hledger-mac-x64.tar.gz"
+		mkdir -p "$DIST"
+		tar xvf "hledger-mac-x64.tar.gz" --directory "$DIST"
+		;;
+	1.27 | 1.27.1 | 1.28 | 1.29 | 1.29.1 | 1.29.2 | 1.30 | 1.31 | 1.32 | 1.32.1 | 1.32.2 | 1.32.3 | 1.33 | 1.33.1)
 		download "https://github.com/simonmichael/hledger/releases/download/$VERSION/hledger-mac-x64.zip"
 		unzip -o "hledger-mac-x64.zip"
 		mkdir -p "$DIST"
