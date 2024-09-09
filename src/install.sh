@@ -6,7 +6,7 @@ set -o pipefail
 
 PWD="$(dirname $(readlink -f -- $0))"
 DIST="$PWD/dist"
-VERSION="1.32"
+VERSION="1.40"
 OS="$(uname -s)"
 
 function help() {
