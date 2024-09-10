@@ -231,6 +231,76 @@ jobs:
               in: "1.32",
               out: "hledger 1.32-g1d90ce92c-20231201, mac-x86_64",
             }
+          - {
+              os: "ubuntu-latest",
+              in: "1.32.1",
+              out: "",
+            }
+          - {
+              os: "macos-latest",
+              in: "1.32.1",
+              out: "",
+            }
+          - {
+              os: "ubuntu-latest",
+              in: "1.32.2",
+              out: "",
+            }
+          - {
+              os: "macos-latest",
+              in: "1.32.2",
+              out: "",
+            }
+          - {
+              os: "ubuntu-latest",
+              in: "1.32.3",
+              out: "",
+            }
+          - {
+              os: "macos-latest",
+              in: "1.32.3",
+              out: "",
+            }
+          - {
+              os: "ubuntu-latest",
+              in: "1.33",
+              out: "",
+            }
+          - {
+              os: "macos-latest",
+              in: "1.33",
+              out: "",
+            }
+          - {
+              os: "ubuntu-latest",
+              in: "1.33.1",
+              out: "",
+            }
+          - {
+              os: "macos-latest",
+              in: "1.33.1",
+              out: "",
+            }
+          - {
+              os: "ubuntu-latest",
+              in: "1.34",
+              out: "",
+            }
+          - {
+              os: "macos-latest",
+              in: "1.34",
+              out: "",
+            }
+          - {
+              os: "ubuntu-latest",
+              in: "1.40",
+              out: "",
+            }
+          - {
+              os: "macos-latest",
+              in: "1.40",
+              out: "",
+            }
     steps:
       - uses: actions/checkout@v3
       - uses: ./
@@ -246,10 +316,10 @@ jobs:
       fail-fast: false
       matrix:
         case:
-          - { os: "ubuntu-latest", out: "hledger 1.32, linux-x86_64" }
+          - { os: "ubuntu-latest", out: "hledger 1.40, linux-x86_64" }
           - {
               os: "macos-latest",
-              out: "hledger 1.32-g1d90ce92c-20231201, mac-x86_64",
+              out: "hledger 1.40-g0f31974c5-20240909, mac-x86_64",
             }
     steps:
       - uses: actions/checkout@v3
